@@ -1,14 +1,10 @@
 {
-  "name": "node-red-contrib-hdlbus",
-  "version": "1.1.6",
-  "description": "Node-Red implementation of HDL BusPro (SmartBus) protocol http://hdlautomation.com",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name": "@lexsus/node-red-contrib-hdlbus",
+  "version": "1.2.0",
+  "description": "Fork of hdlbus implementation by mrgadget, which fixes validator's errors",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrgadget/node-red-contrib-hdlbus.git"
+    "url": "https://github.com/Lexsus2020/node-red-contrib-hdlbus.git"
   },
   "keywords": [
     "node-red",
@@ -17,16 +13,12 @@
     "smart-bus"
   ],
   "node-red": {
+    "version": ">=3.0.0",
     "nodes": {
       "hdlbus": "hdlbus/hdlbus.js"
     }
   },
-  "author": "@bennuttall",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mrgadget/node-red-contrib-hdlbus/issues"
-  },
-  "homepage": "https://github.com/mrgadget/node-red-contrib-hdlbus#readme",
   "dependencies": {
     "smart-bus-mrgadget": "^0.5.4"
   }
