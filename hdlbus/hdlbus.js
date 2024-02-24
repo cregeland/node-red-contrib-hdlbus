@@ -1,5 +1,5 @@
 var util = require("util");
-var SmartBus = require('smart-bus-mrgadget');
+var SmartBus = require('@lexsus/smart-bus');
 var EventEmitter = require('events').EventEmitter;
 var cmdsLink = {
 	49: 50
