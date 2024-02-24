@@ -1,6 +1,6 @@
 {
   "name": "@lexsus/node-red-contrib-hdlbus",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Fork of hdlbus implementation by mrgadget, which fixes validator's errors",
   "repository": {
     "type": "git",
@@ -20,6 +20,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "smart-bus-mrgadget": "^0.5.4"
+    "@lexsus/smart-bus": "^0.5.5"
   }
 }
