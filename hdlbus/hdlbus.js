@@ -162,6 +162,28 @@ module.exports = function(RED) {
                 node.error("Required parameters msg.target and msg.code");
                 return;
             }
+	     // === Handle DALI2 CCT command 58460 (0xE45C) ===
+           if (msg.code === 0xE45C) {
+		   var p = msg.payload || {};
+		   var kelvinRaw = (p.color_temp_kelvin || 2700) * 10;
+		   var buf = Buffer.from([
+			   p.channel    || 0,                                         // channel
+			   Math.round((p.brightness || 0) * 100 / 255),              // brightness 0–100
+			   254,                                                      // success marker
+			   0,                                                        // reserved
+			   p.transition || 0,                                        // transition seconds
+			   2,                                                        // command type = CCT
+			   (kelvinRaw >> 8) & 0xFF,                                  // colortemp high byte
+			   kelvinRaw & 0xFF,                                         // colortemp low byte
+			   0,                                                        // reserved
+			   0                                                         // reserved
+	           ]);
+            // send the raw buffer straight to the bus socket
+            this.bus.socket.write(buf);
+            return;
+        }
+
+        // === Fallback for all other codes ===
             node.bus.send(msg.target, msg.code, msg.payload, function(err) {
                 if (err){
                     node.error(err);   
@@ -173,7 +195,7 @@ module.exports = function(RED) {
         });
     }
     RED.nodes.registerType("hdl-raw-out",HdlBusOut);
-
+    
     function HdlChannelIn(config) {
         RED.nodes.createNode(this,config);
         var controller = RED.nodes.getNode(config.controller);
